@@ -39,7 +39,9 @@ export default function Home() {
           {["Kubernetes", "CI/CD", "Docker"].map((item, i) => (
             <motion.div
               key={i}
-              whileHover={{ scale: 1.05, rotate: 1 }}
+              whileHover={{ scale: 1.07 }}
+	      whileTap={{ scale: 0.98 }}
+	      transition={{ type: "spring", stiffness: 200 }}
               className="p-6 border border-gray-700 rounded-xl backdrop-blur bg-white/5"
             >
               <h3 className="text-xl font-semibold">{item}</h3>
