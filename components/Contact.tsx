@@ -5,6 +5,8 @@ import emailjs from "emailjs-com";
 import { useState } from "react";
 
 export default function Contact() {
+
+  // ================= STATE =================
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -12,23 +14,40 @@ export default function Contact() {
     message: "",
   });
 
+  // ================= HANDLE INPUT =================
   const handleChange = (e: any) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
+  // ================= SEND EMAIL =================
   const sendEmail = (e: any) => {
     e.preventDefault();
 
     emailjs
       .send(
-        "service_ha8pple",   // 🔥 replace
-        "template_f0m8mv8",  // 🔥 replace
-        form,
-        "dp1pcbkbO-q-WmKMI"    // 🔥 replace
+        "service_ha8pple",     // ✅ your service ID
+        "template_f0m8mv8",    // ✅ your template ID
+        {
+          name: form.name,
+          email: form.email,
+          reason: form.reason,
+          message: form.message,
+        },
+        "dp1pcbkbO-q-WmKMI"    // ✅ your public key
       )
       .then(() => {
         alert("Message sent successfully 🚀");
-        setForm({ name: "", email: "", reason: "", message: "" });
+
+        // reset form
+        setForm({
+          name: "",
+          email: "",
+          reason: "",
+          message: "",
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -36,6 +55,7 @@ export default function Contact() {
       });
   };
 
+  // ================= UI =================
   return (
     <section id="contact" className="py-24 px-6 max-w-6xl mx-auto">
 
@@ -58,7 +78,7 @@ export default function Contact() {
           </h3>
 
           {/* EMAIL */}
-          <div className="flex items-center gap-4 p-5 border border-gray-800 rounded-xl mb-4 bg-gray-900/40 backdrop-blur">
+          <div className="flex items-center gap-4 p-5 border border-gray-800 rounded-xl mb-4 bg-gray-900/40">
             <FaEnvelope className="text-red-500 text-xl" />
             <div>
               <p className="text-xs text-gray-400">EMAIL ME</p>
@@ -72,7 +92,7 @@ export default function Contact() {
           </div>
 
           {/* LINKEDIN */}
-          <div className="flex items-center gap-4 p-5 border border-gray-800 rounded-xl bg-gray-900/40 backdrop-blur">
+          <div className="flex items-center gap-4 p-5 border border-gray-800 rounded-xl bg-gray-900/40">
             <FaLinkedin className="text-red-500 text-xl" />
             <div>
               <p className="text-xs text-gray-400">LINKEDIN</p>
@@ -90,64 +110,52 @@ export default function Contact() {
         </div>
 
         {/* RIGHT SIDE FORM */}
-        <div className="border border-gray-800 rounded-xl p-6 bg-gray-900/40 backdrop-blur">
+        <div className="border border-gray-800 rounded-xl p-6 bg-gray-900/40">
 
           <form onSubmit={sendEmail} className="space-y-5">
 
-            <div>
-              <label className="text-sm text-gray-400">NAME</label>
-              <input
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                type="text"
-                placeholder="Your Name"
-                required
-                className="w-full mt-1 p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-red-500"
-              />
-            </div>
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              type="text"
+              placeholder="Your Name"
+              required
+              className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg"
+            />
 
-            <div>
-              <label className="text-sm text-gray-400">EMAIL</label>
-              <input
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                type="email"
-                placeholder="your@email.com"
-                required
-                className="w-full mt-1 p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-red-500"
-              />
-            </div>
+            <input
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              type="email"
+              placeholder="your@email.com"
+              required
+              className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg"
+            />
 
-            <div>
-              <label className="text-sm text-gray-400">REASON</label>
-              <input
-                name="reason"
-                value={form.reason}
-                onChange={handleChange}
-                type="text"
-                placeholder="Job Opportunity / Project / Collaboration"
-                className="w-full mt-1 p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-red-500"
-              />
-            </div>
+            <input
+              name="reason"
+              value={form.reason}
+              onChange={handleChange}
+              type="text"
+              placeholder="Reason"
+              className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg"
+            />
 
-            <div>
-              <label className="text-sm text-gray-400">MESSAGE</label>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                rows={4}
-                placeholder="Briefly describe your idea..."
-                required
-                className="w-full mt-1 p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-red-500"
-              />
-            </div>
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              rows={4}
+              placeholder="Your message..."
+              required
+              className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg"
+            />
 
             <button
               type="submit"
-              className="w-full bg-red-600 hover:bg-red-700 py-3 rounded-lg font-medium transition"
+              className="w-full bg-red-600 hover:bg-red-700 py-3 rounded-lg font-medium"
             >
               SEND MESSAGE
             </button>

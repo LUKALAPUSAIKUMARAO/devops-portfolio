@@ -111,7 +111,7 @@ function Card({ title, data, list }: any) {
 
 export default function Skills() {
   return (
-    <section className="py-16 px-6 max-w-6xl mx-auto">
+    <section  id="skills" className="py-16 px-6 max-w-6xl mx-auto">
 
       <h2 className="text-2xl md:text-3xl font-semibold text-center mb-12">
         ENGINEERING STACK

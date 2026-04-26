@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 export default function About() {
   return (
-    <section className="py-20 px-6 max-w-6xl mx-auto">
+    <section id="about" className="py-20 px-6 max-w-6xl mx-auto">
 
       <div className="grid md:grid-cols-2 gap-12 items-center">
 

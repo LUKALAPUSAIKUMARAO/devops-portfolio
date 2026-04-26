@@ -2,23 +2,34 @@
 
 export default function Navbar() {
   return (
-    <div className="fixed top-0 left-0 w-full z-40 bg-black/70 backdrop-blur border-b border-gray-800">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur border-b border-gray-800">
 
-        <h1 className="text-red-500 font-bold text-xl">SAI</h1>
+      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
 
-        <div className="hidden md:flex gap-6 text-gray-300">
-          <a href="#">About</a>
-          <a href="#">Projects</a>
-          <a href="#">Skills</a>
-          <a href="#">Contact</a>
+        <h1 className="font-bold text-lg text-red-500">Sai Kumar</h1>
+
+        <div className="flex gap-6 text-sm">
+
+          <a href="#about" className="hover:text-red-500 transition">
+            About
+          </a>
+
+          <a href="#skills" className="hover:text-red-500 transition">
+            Skills
+          </a>
+
+          <a href="#projects" className="hover:text-red-500 transition">
+            Projects
+          </a>
+
+          <a href="#contact" className="hover:text-red-500 transition">
+            Contact
+          </a>
+
         </div>
 
-        <button className="bg-red-600 px-4 py-2 rounded-lg">
-          Hire Me
-        </button>
-
       </div>
-    </div>
+
+    </nav>
   );
 }
