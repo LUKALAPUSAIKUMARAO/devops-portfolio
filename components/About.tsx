@@ -14,9 +14,9 @@ export default function About() {
 
             {/* IMAGE */}
             <img
-              src="/profile.jpg"   // 🔥 put your image in /public
-              alt="profile"
-              className="w-64 h-64 rounded-full object-cover border border-gray-700"
+              src="/profile.jpg"
+              alt="Sai Kumar"
+              className="w-64 h-64 rounded-full object-cover border border-gray-700 relative z-10"
             />
 
             {/* GLOW */}
@@ -62,24 +62,51 @@ export default function About() {
           </div>
 
           {/* BUTTONS */}
-          <div className="mt-8 flex items-center gap-4">
+          <div className="mt-8 flex items-center gap-4 flex-wrap">
 
-            <button className="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-lg font-medium transition">
+            {/* PRIMARY BUTTON */}
+            <button
+              onClick={() => {
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-lg font-medium transition"
+            >
               Collaborate Now
             </button>
 
             {/* ICONS */}
             <div className="flex gap-3">
 
-              <a className="p-3 border border-gray-700 rounded-full hover:bg-gray-800 transition">
+              {/* LINKEDIN */}
+              <a
+                href="https://www.linkedin.com/in/l-saikumar/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="LinkedIn"
+                className="p-3 border border-gray-700 rounded-full hover:bg-gray-800 transition"
+              >
                 <FaLinkedin />
               </a>
 
-              <a className="p-3 border border-gray-700 rounded-full hover:bg-gray-800 transition">
+              {/* GITHUB */}
+              <a
+                href="https://github.com/LUKALAPUSAIKUMARAO"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="GitHub"
+                className="p-3 border border-gray-700 rounded-full hover:bg-gray-800 transition"
+              >
                 <FaGithub />
               </a>
 
-              <a className="p-3 border border-gray-700 rounded-full hover:bg-gray-800 transition">
+              {/* EMAIL */}
+              <a
+                href="lukalapusaikumar1@gmail.com"
+                title="Email"
+                className="p-3 border border-gray-700 rounded-full hover:bg-gray-800 transition"
+              >
                 <FaEnvelope />
               </a>
 
