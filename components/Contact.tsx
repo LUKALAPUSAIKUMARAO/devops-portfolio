@@ -1,10 +1,43 @@
 "use client";
 
 import { FaEnvelope, FaLinkedin } from "react-icons/fa";
+import emailjs from "emailjs-com";
+import { useState } from "react";
 
 export default function Contact() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    reason: "",
+    message: "",
+  });
+
+  const handleChange = (e: any) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const sendEmail = (e: any) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "service_ha8pple",   // 🔥 replace
+        "template_f0m8mv8",  // 🔥 replace
+        form,
+        "dp1pcbkbO-q-WmKMI"    // 🔥 replace
+      )
+      .then(() => {
+        alert("Message sent successfully 🚀");
+        setForm({ name: "", email: "", reason: "", message: "" });
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Failed to send message ❌");
+      });
+  };
+
   return (
-    <section className="py-24 px-6 max-w-6xl mx-auto">
+    <section id="contact" className="py-24 px-6 max-w-6xl mx-auto">
 
       {/* TITLE */}
       <div className="text-center mb-16">
@@ -59,13 +92,17 @@ export default function Contact() {
         {/* RIGHT SIDE FORM */}
         <div className="border border-gray-800 rounded-xl p-6 bg-gray-900/40 backdrop-blur">
 
-          <form className="space-y-5">
+          <form onSubmit={sendEmail} className="space-y-5">
 
             <div>
               <label className="text-sm text-gray-400">NAME</label>
               <input
+                name="name"
+                value={form.name}
+                onChange={handleChange}
                 type="text"
                 placeholder="Your Name"
+                required
                 className="w-full mt-1 p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-red-500"
               />
             </div>
@@ -73,8 +110,12 @@ export default function Contact() {
             <div>
               <label className="text-sm text-gray-400">EMAIL</label>
               <input
+                name="email"
+                value={form.email}
+                onChange={handleChange}
                 type="email"
                 placeholder="your@email.com"
+                required
                 className="w-full mt-1 p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-red-500"
               />
             </div>
@@ -82,6 +123,9 @@ export default function Contact() {
             <div>
               <label className="text-sm text-gray-400">REASON</label>
               <input
+                name="reason"
+                value={form.reason}
+                onChange={handleChange}
                 type="text"
                 placeholder="Job Opportunity / Project / Collaboration"
                 className="w-full mt-1 p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-red-500"
@@ -91,8 +135,12 @@ export default function Contact() {
             <div>
               <label className="text-sm text-gray-400">MESSAGE</label>
               <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
                 rows={4}
                 placeholder="Briefly describe your idea..."
+                required
                 className="w-full mt-1 p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-red-500"
               />
             </div>
